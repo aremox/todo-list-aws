@@ -11,20 +11,7 @@ from unittest import mock
 @mock.patch.dict(os.environ, {"ENDPOINT_OVERRIDE": "http://dynamodb:8000"})
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
-    def test_Nombre_DB(self): 
-        print ('---------------------')
-        print ('Start: test_Nombre_DB')
-        from src.todoList import get_table
-        """Create the mock database and table"""
-        k = mock.patch.dict(os.environ, {"mytemp": "mytemp"})
-        result = get_table(None)
-        # Testing file functions
-        # Table mock
-      
-        #print ('Response GetItems' + str(result))
-        
-        print ('End: test_list_todo')
-
+    
     def setUp(self):
         print ('---------------------')
         print ('Start: setUp')
@@ -216,7 +203,17 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
 
-
+    def test_Nombre_DB(self): 
+        print ('---------------------')
+        print ('Start: test_Nombre_DB')
+        from src.todoList import get_table
+        """Create the mock database and table"""
+        k = mock.patch.dict(os.environ, {"mytemp": "mytemp"})
+        result = get_table(None)
+      
+        print ('Response get_table' + str(result))
+        
+        print ('End: test_list_todo')
 
 if __name__ == '__main__':
     unittest.main()
