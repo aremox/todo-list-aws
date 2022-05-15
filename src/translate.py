@@ -2,14 +2,15 @@ import json
 import decimalencoder
 import todoList
 
-
-def get(event, context):
+def translate(event, context):
     # create a response
     item = todoList.get_item(event['pathParameters']['id'])
+    traduccion = todoList.get_translate("Hola Mundo", "en")
+
     if item:
         response = {
             "statusCode": 200,
-            "body": json.dumps(item,
+            "body": json.dumps(item['text'],
                                cls=decimalencoder.DecimalEncoder)
         }
     else:
