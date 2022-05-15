@@ -9,6 +9,18 @@ import json
 
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
+    def test_Nombre_DB(self):
+        print ('---------------------')
+        print ('Start: test_Nombre_DB')
+        from src.todoList import get_table
+        result = get_table()
+        # Testing file functions
+        # Table mock
+      
+        print ('Response GetItems' + str(result))
+        
+        print ('End: test_list_todo')
+
     def setUp(self):
         print ('---------------------')
         print ('Start: setUp')
