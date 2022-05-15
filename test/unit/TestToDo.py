@@ -11,12 +11,18 @@ from unittest import mock
 @mock.patch.dict(os.environ, {"ENDPOINT_OVERRIDE": "http://dynamodb:8000"})
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
-    
+    def setUp(self):
+        print ('---------------------')
+        print ('Start: get_table')
+        from src.todoList import get_table
+        result = get_table(None)
+        print ('End: get_table')
+
+        
     def setUp(self):
         print ('---------------------')
         print ('Start: setUp')
-        from src.todoList import get_table
-        result = get_table(None)
+        
         warnings.filterwarnings(
             "ignore",
             category=ResourceWarning,
@@ -34,7 +40,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.is_local = 'true'
         self.uuid = "123e4567-e89b-12d3-a456-426614174000"
         self.text = "Aprender DevOps y Cloud en la UNIR"
-        
+        from src.todoList import get_table
         result = get_table(self.dynamodb)
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
