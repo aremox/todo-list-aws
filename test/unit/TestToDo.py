@@ -34,7 +34,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.text = "Aprender DevOps y Cloud en la UNIR"
         from src.todoList import get_table
         k = mock.patch.dict(os.environ, {"ENDPOINT_OVERRIDE": "http://dynamodb:8000"})
-        result = get_table(None)
+        #result = get_table(None)
         result = get_table(self.dynamodb)
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
