@@ -6,7 +6,9 @@ from moto import mock_dynamodb2
 import sys
 import os
 import json
+from unittest import mock
 
+@mock.patch.dict(os.environ, {"ENDPOINT_OVERRIDE": "http://dynamodb:8000"})
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
     def test_Nombre_DB(self): 
@@ -14,10 +16,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Start: test_Nombre_DB')
         from src.todoList import get_table
         """Create the mock database and table"""
-        self.dynamodb2 = boto3.resource('dynamodb', region_name='us-east-1')
-        self.is_local = 'true'
-        self.uuid = "123e4567-e89b-12d3-a456-426614174000"
-        self.text = "Aprender DevOps y Cloud en la UNIR"
+        k = mock.patch.dict(os.environ, {"mytemp": "mytemp"})
         result = get_table(None)
         # Testing file functions
         # Table mock
