@@ -26,8 +26,8 @@ def get_translate(texto,idioma):
     if not idioma:
         return "Falta idioma"
     translate = boto3.client(service_name='translate', region_name='us-east-1', use_ssl=True)
-    #return(translate.translate_text(Text=texto, SourceLanguageCode="es", TargetLanguageCode=idioma))
-    return "hola"
+    result = translate.translate_text(Text=texto, SourceLanguageCode="es", TargetLanguageCode=idioma)
+    return result
 #https://docs.aws.amazon.com/translate/latest/dg/examples-python.html
 def get_item(key, dynamodb=None):
     table = get_table(dynamodb)
