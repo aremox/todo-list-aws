@@ -4,16 +4,20 @@ case $1 in
     echo "local"
     BASE_URL=http://127.0.0.1:8081
   ;;
+  manual)
+    echo "manual"
+    BASE_URL=https://tz0tn4nqc9.execute-api.us-east-1.amazonaws.com/Prod
+  ;;
   staging)
     echo "staging"
-    BASE_URL=https://tz0tn4nqc9.execute-api.us-east-1.amazonaws.com/Prod
+    BASE_URL=https://wc9tncfekk.execute-api.us-east-1.amazonaws.com/Prod
   ;;
   produccion)
     echo "produccion"
   ;;
   *)
     echo $1" No es un entorno valido"
-    echo "local; staging; produccion;"
+    echo "local; manual; staging; produccion;"
     exit 255
   ;;
 esac
@@ -36,7 +40,7 @@ echo "DELETE "$id
 curl -s -X DELETE $BASE_URL/todos/$id
 #Borrar todo
 echo "BORRAR TODOS"
-for i in $( curl -s https://tz0tn4nqc9.execute-api.us-east-1.amazonaws.com/Prod/todos | json_pp | grep -i id |cut -d \: -f 2 | cut -d \" -f 2)
+for i in $( curl -s $BASE_URL/todos | json_pp | grep -i id |cut -d \: -f 2 | cut -d \" -f 2)
 do 
 echo $i
 curl -s -X DELETE $BASE_URL/todos/$i
