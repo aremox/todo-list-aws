@@ -213,7 +213,7 @@ class TestDatabaseFunctions(unittest.TestCase):
       
         print ('Response get_table' + str(result))
         
-        print ('End: test_list_todo')
+        print ('End: test_Nombre_DB')
 
 if __name__ == '__main__':
     unittest.main()
