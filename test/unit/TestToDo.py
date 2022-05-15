@@ -15,7 +15,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('---------------------')
         print ('Start: get_table')
         from src.todoList import get_table
-        result = get_table(None)
+        result = get_table(Topo)
         print ('End: get_table')
 
         
