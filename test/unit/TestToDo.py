@@ -18,6 +18,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         result = get_table(None)
         print ('End: get_table')
         
+        
     def setUp(self):
         print ('---------------------')
         print ('Start: setUp')
