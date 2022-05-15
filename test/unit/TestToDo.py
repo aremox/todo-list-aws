@@ -11,13 +11,13 @@ from unittest import mock
 @mock.patch.dict(os.environ, {"ENDPOINT_OVERRIDE": "http://dynamodb:8000"})
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
-    def getTable(self):
+    def getDB(self):
         print ('---------------------')
         print ('Start: get_table')
         from src.todoList import get_table
         result = get_table(None)
         print ('End: get_table')
-        
+
         
     def setUp(self):
         print ('---------------------')
