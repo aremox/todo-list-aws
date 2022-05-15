@@ -14,7 +14,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Start: test_Nombre_DB')
         from src.todoList import get_table
         """Create the mock database and table"""
-        self.dynamodb2 = boto3.resource('dynamodb2', region_name='us-east-1')
+        self.dynamodb2 = boto3.resource('cloudwatch', region_name='us-east-1')
         self.is_local = 'true'
         self.uuid = "123e4567-e89b-12d3-a456-426614174000"
         self.text = "Aprender DevOps y Cloud en la UNIR"
