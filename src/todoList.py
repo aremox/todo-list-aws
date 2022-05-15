@@ -20,7 +20,14 @@ def get_table(dynamodb=None):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     return table
 
-
+def get_translate(texto,idioma):
+    if not texto:
+        return "Falta texto"
+    if not idioma:
+        return "Falta idioma"
+    translate = boto3.client(service_name='translate', region_name='region', use_ssl=True)
+    return(translate.translate_text(Text=texto, SourceLanguageCode="es", TargetLanguageCode=idioma))
+#https://docs.aws.amazon.com/translate/latest/dg/examples-python.html
 def get_item(key, dynamodb=None):
     table = get_table(dynamodb)
     try:

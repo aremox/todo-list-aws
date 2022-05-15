@@ -18,3 +18,21 @@ def get(event, context):
             "body": ""
         }
     return response
+
+def translate(event, context):
+    # create a response
+    item = todoList.get_item(event['pathParameters']['id'])
+    traduccion = todoList.get_translate("Hola Mundo", "en")
+    
+    if item:
+        response = {
+            "statusCode": 200,
+            "body": json.dumps(item,
+                               cls=decimalencoder.DecimalEncoder)
+        }
+    else:
+        response = {
+            "statusCode": 404,
+            "body": ""
+        }
+    return response
