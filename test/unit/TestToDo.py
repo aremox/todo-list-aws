@@ -13,7 +13,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('---------------------')
         print ('Start: test_Nombre_DB')
         from src.todoList import get_table
-        #result = get_table(None)
+        #result = get_table(self.dynamodb2)
         # Testing file functions
         # Table mock
       
