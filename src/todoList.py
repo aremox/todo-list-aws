@@ -143,7 +143,6 @@ def create_todo_table(dynamodb):
 
 
 def get_translate(texto, idioma, dynamodb=None):
-   
     translate = boto3.client(
         service_name='translate', region_name='us-east-1', use_ssl=True
         )
@@ -155,3 +154,4 @@ def get_translate(texto, idioma, dynamodb=None):
         print(e.response['Error']['Message'])
     else:
         return result.get('TranslatedText')
+        

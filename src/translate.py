@@ -19,7 +19,6 @@ def translate(event, context):
             item["text"], cls=decimalencoder.DecimalEncoder, indent=4
             )
         )
-    
     if item:
         response = {
             "statusCode": 200,
@@ -32,3 +31,4 @@ def translate(event, context):
             "body": ""
         }
     return response
+    
