@@ -154,4 +154,4 @@ def get_translate(texto, idioma, dynamodb=None):
         print(e.response['Error']['Message'])
     else:
         return result.get('TranslatedText')
-        
+    
