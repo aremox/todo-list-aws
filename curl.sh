@@ -24,7 +24,7 @@ esac
 
 #CREATE
 echo "CREATE"
-curl -s -X POST $BASE_URL/todos --data '{ "text": "Learn Serverless" }' | json_pp
+curl -s -X POST $BASE_URL/todos --data '{ "text": "Hacer apartado C" }' | json_pp
 #List
 echo "List"
 curl -s $BASE_URL/todos | json_pp
@@ -32,9 +32,15 @@ id=$( curl -s $BASE_URL/todos | json_pp | grep -i id | tail -1 |cut -d \: -f 2 |
 #Get 
 echo "GET"
 curl -s $BASE_URL/todos/$id | json_pp
+#Translate EN
+echo "TRANSLATE EN"
+curl -s $BASE_URL/todos/$id/en | json_pp
+#Translate FR
+echo "TRANSLATE FR"
+curl -s $BASE_URL/todos/$id/fr | json_pp
 #Update
 echo "UPDATE"
-curl -s -X PUT $BASE_URL/todos/$id --data '{ "text": "Learn Serverless", "checked": true }' | json_pp
+curl -s -X PUT $BASE_URL/todos/$id --data '{ "text": "Hacer apartado C", "checked": true }' | json_pp
 #Delete
 echo "DELETE "$id
 curl -s -X DELETE $BASE_URL/todos/$id
