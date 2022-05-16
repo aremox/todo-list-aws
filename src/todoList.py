@@ -7,7 +7,7 @@ import functools
 from botocore.exceptions import ClientError
 
 
-def get_table(dynamodb=None): 
+def get_table(dynamodb=None):
     if not dynamodb:
         URL = os.environ['ENDPOINT_OVERRIDE']
         if URL:
@@ -19,6 +19,7 @@ def get_table(dynamodb=None):
     # fetch todo from the database
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     return table
+
 
 def get_item(key, dynamodb=None):
     table = get_table(dynamodb)
@@ -74,7 +75,6 @@ def update_item(key, text, checked, dynamodb=None):
     table = get_table(dynamodb)
     timestamp = int(time.time() * 1000)
     # update the todo in the database
-    #try:
     result = table.update_item(
         Key={
             'id': key
@@ -92,26 +92,17 @@ def update_item(key, text, checked, dynamodb=None):
                          'updatedAt = :updatedAt',
         ReturnValues='ALL_NEW',
     )
-
-    #except ClientError as e:
-    #    print(e.response['Error']['Message'])
-    #else:
     return result['Attributes']
 
 
 def delete_item(key, dynamodb=None):
     table = get_table(dynamodb)
     # delete the todo from the database
-    #try:
     table.delete_item(
         Key={
             'id': key
         }
     )
-
-    #except ClientError as e:
-    #    print(e.response['Error']['Message'])
-    #else:
     return
 
 
