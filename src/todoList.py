@@ -74,45 +74,45 @@ def update_item(key, text, checked, dynamodb=None):
     table = get_table(dynamodb)
     timestamp = int(time.time() * 1000)
     # update the todo in the database
-    try:
-        result = table.update_item(
-            Key={
-                'id': key
-            },
-            ExpressionAttributeNames={
-              '#todo_text': 'text',
-            },
-            ExpressionAttributeValues={
-              ':text': text,
-              ':checked': checked,
-              ':updatedAt': timestamp,
-            },
-            UpdateExpression='SET #todo_text = :text, '
-                             'checked = :checked, '
-                             'updatedAt = :updatedAt',
-            ReturnValues='ALL_NEW',
-        )
+    #try:
+    result = table.update_item(
+        Key={
+            'id': key
+        },
+        ExpressionAttributeNames={
+          '#todo_text': 'text',
+        },
+        ExpressionAttributeValues={
+          ':text': text,
+          ':checked': checked,
+          ':updatedAt': timestamp,
+        },
+        UpdateExpression='SET #todo_text = :text, '
+                         'checked = :checked, '
+                         'updatedAt = :updatedAt',
+        ReturnValues='ALL_NEW',
+    )
 
-    except ClientError as e:
-        print(e.response['Error']['Message'])
-    else:
-        return result['Attributes']
+    #except ClientError as e:
+    #    print(e.response['Error']['Message'])
+    #else:
+    return result['Attributes']
 
 
 def delete_item(key, dynamodb=None):
     table = get_table(dynamodb)
     # delete the todo from the database
-    try:
-        table.delete_item(
-            Key={
-                'id': key
-            }
-        )
+    #try:
+    table.delete_item(
+        Key={
+            'id': key
+        }
+    )
 
-    except ClientError as e:
-        print(e.response['Error']['Message'])
-    else:
-        return
+    #except ClientError as e:
+    #    print(e.response['Error']['Message'])
+    #else:
+    return
 
 
 def create_todo_table(dynamodb):

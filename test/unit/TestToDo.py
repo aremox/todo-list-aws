@@ -12,28 +12,6 @@ from unittest import mock
 @mock.patch.dict(os.environ, {"ENDPOINT_OVERRIDE": "http://dynamodb:8000"})
 @mock_dynamodb2
 class TestDatabaseFunctions(unittest.TestCase):
-    def mocked_translate_text(self):
-        return {
-            "original_text":"Hola mundo",
-            "translated_text":"Hello world",
-            "original_language":"es",
-            "target_language":"en"
-    }
-   
-    '''
-    def test_is_prime(self):
-        print ('---------------------')
-        print ('Start: test_is_prime')
-        from src.todoList import get_table
-        response = get_table()
-        print ('Response put_item:' + str(response))
-        self.assertEqual("dynamodb.Table(name='todoUnitTestsTable'", str(response))
-        self.table.delete()
-        print ('Table deleted succesfully')
-      
-        self.dynamodb = None
-        print ('End: test_is_prime')
-     '''   
     def setUp(self):
         print ('---------------------')
         print ('Start: setUp')
@@ -235,8 +213,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Start: test_translate_todo')
         
         from src.todoList import get_translate
-        # Testing file functions
-        # Table mock
         translation = get_translate(self.text, "en", self.dynamodb)
         print ('Response translate en:' + str(translation))
         self.assertEqual(None, translation)
@@ -244,8 +220,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Response translate fr:' + str(translation))
         self.assertEqual(None, translation)
         print ('End: test_delete_todo')
-
-
+        
+   
 
 if __name__ == '__main__':
     unittest.main()
