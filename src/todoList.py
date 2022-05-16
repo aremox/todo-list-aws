@@ -20,16 +20,6 @@ def get_table(dynamodb=None):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     return table
 
-def get_translate(texto,idioma):
-    if not texto:
-        return "Falta texto"
-    if not idioma:
-        return "Falta idioma"
-    translate = boto3.client(service_name='translate', region_name='us-east-1', use_ssl=True)
-    result = translate.translate_text(Text=texto, SourceLanguageCode="es", TargetLanguageCode=idioma)
-    print('TranslatedText: ' + result.get('TranslatedText'))
-    return result.get('TranslatedText')
-#https://docs.aws.amazon.com/translate/latest/dg/examples-python.html
 def get_item(key, dynamodb=None):
     table = get_table(dynamodb)
     try:
@@ -155,3 +145,17 @@ def create_todo_table(dynamodb):
         raise AssertionError()
 
     return table
+
+    ###########################################################################
+    #       Translate añadido                                                  #
+    ###########################################################################
+
+def get_translate(texto,idioma, dynamodb=None):
+   
+    translate = boto3.client(service_name='translate', region_name='us-east-1', use_ssl=True)
+    try:
+        result = translate.translate_text(Text=texto, SourceLanguageCode="auto", TargetLanguageCode=idioma)
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        return result.get('TranslatedText')

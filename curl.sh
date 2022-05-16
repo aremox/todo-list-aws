@@ -6,7 +6,7 @@ case $1 in
   ;;
   manual)
     echo "manual"
-    BASE_URL=https://tz0tn4nqc9.execute-api.us-east-1.amazonaws.com/Prod
+    BASE_URL=https://zvl23y0n15.execute-api.us-east-1.amazonaws.com/Prod
   ;;
   staging)
     echo "staging"
