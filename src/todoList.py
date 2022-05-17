@@ -89,8 +89,8 @@ def update_item(key, text, checked, dynamodb=None):
                 ':updatedAt': timestamp,
             },
             UpdateExpression='SET #todo_text = :text, '
-                         'checked = :checked, '
-                         'updatedAt = :updatedAt',
+                'checked = :checked, '
+                'updatedAt = :updatedAt',
             ReturnValues='ALL_NEW',
         )
     except ClientError as e:
